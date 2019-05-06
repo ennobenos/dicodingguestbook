@@ -66,7 +66,9 @@
             $stmt->execute();
             echo "<h3>Your're registered!</h3>";
           } else {
-            echo $errors;
+            foreach($errors as $error) {
+              echo $error;
+            }
           }
       } catch(Exception $e) {
           echo "Failed: " . $e;
