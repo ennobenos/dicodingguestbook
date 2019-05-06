@@ -12,19 +12,19 @@
   <form method="post" action="index.php" enctype="multipart/form-data">
   	<div class="input-group">
   	  <label>Name</label>
-  	  <input type="text" name="name" required>
+  	  <input type="text" name="name">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
-  	  <input type="email" name="email" required>
+  	  <input type="email" name="email">
   	</div>
   	<div class="input-group">
   	  <label>Mobile Number</label>
-  	  <input type="number" name="mobilenumber" required>
+  	  <input type="number" name="mobilenumber">
   	</div>
     <div class="input-group">
       <label>Comment</label>
-      <textarea name="comment" cols="60" rows="3" id="comment" required></textarea>
+      <textarea name="comment" cols="60" rows="3" id="comment"></textarea>
     </div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Register</button>
@@ -44,19 +44,27 @@
   }
   if (isset($_POST['reg_user'])) {
       try {
+          $errors = array();
           $name = $_POST['name'];
           $email = $_POST['email'];
           $mobilenumber = $_POST['mobilenumber'];
           $comment = $_POST['comment'];
-          // Insert data
-          $sql_insert = "INSERT INTO Guest (name, email, mobilenumber, comment)
-                      VALUES (?,?,?,?)";
-          $stmt = $conn->prepare($sql_insert);
-          $stmt->bindValue(1, $name);
-          $stmt->bindValue(2, $email);
-          $stmt->bindValue(3, $mobilenumber);
-          $stmt->bindValue(4, $comment);
-          $stmt->execute();
+
+          if (empty($name)) { array_push($errors, "Name is required"); }
+          if (empty($email)) { array_push($errors, "Email is required"); }
+          if (empty($mobilenumber)) { array_push($errors, "Mobile number is required"); }
+          if (empty($comment)) { array_push($errors, "Comment is required"); }
+          if (count($errors) == 0) {
+            // Insert data
+            $sql_insert = "INSERT INTO Guest (name, email, mobilenumber, comment)
+                        VALUES (?,?,?,?)";
+            $stmt = $conn->prepare($sql_insert);
+            $stmt->bindValue(1, $name);
+            $stmt->bindValue(2, $email);
+            $stmt->bindValue(3, $mobilenumber);
+            $stmt->bindValue(4, $comment);
+            $stmt->execute();
+          }
       } catch(Exception $e) {
           echo "Failed: " . $e;
       }
