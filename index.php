@@ -38,36 +38,11 @@
             $stmt->bindValue(3, $mobilenumber);
             $stmt->bindValue(4, $comment);
             $stmt->execute();
-            echo "<p>Your're registered!</p>";
+            echo "<div class='input-group'><p>Your're registered!</p><div>";
           } else {
             foreach($errors as $error) {
-              echo "<p>".$error."<br></p>";
+              echo "<div class='input-group'><p>".$error."<br></p><div>";
             }
-          }
-      } catch(Exception $e) {
-          echo "Failed: " . $e;
-      }
-  } else if (isset($_POST['load_data'])) {
-      try {
-          $sql_select = "SELECT * FROM Guest";
-          $stmt = $conn->query($sql_select);
-          $registrants = $stmt->fetchAll();
-          if(count($registrants) > 0) {
-              echo "<h2>People who are registered:</h2>";
-              echo "<table>";
-              echo "<tr><th>Name</th>";
-              echo "<th>Email</th>";
-              echo "<th>Mobile Number</th>";
-              echo "<th>Comment</th></tr>";
-              foreach($registrants as $registrant) {
-                  echo "<tr><td>".$registrant['name']."</td>";
-                  echo "<td>".$registrant['email']."</td>";
-                  echo "<td>".$registrant['mobilenumber']."</td>";
-                  echo "<td>".$registrant['comment']."</td></tr>";
-              }
-              echo "</table>";
-          } else {
-              echo "<h3>No one is currently registered.</h3>";
           }
       } catch(Exception $e) {
           echo "Failed: " . $e;
@@ -100,5 +75,33 @@
       <button type="submit" class="btn" name="load_data">Load Data</button>
   	</div>
   </form>
+  <?php
+  if (isset($_POST['load_data'])) {
+      try {
+          $sql_select = "SELECT * FROM Guest";
+          $stmt = $conn->query($sql_select);
+          $registrants = $stmt->fetchAll();
+          if(count($registrants) > 0) {
+              echo "<div class='header'><h2>People who are registered:</h2></div>";
+              echo "<div class='input-group'><table>";
+              echo "<tr><th>Name</th>";
+              echo "<th>Email</th>";
+              echo "<th>Mobile Number</th>";
+              echo "<th>Comment</th></tr>";
+              foreach($registrants as $registrant) {
+                  echo "<tr><td>".$registrant['name']."</td>";
+                  echo "<td>".$registrant['email']."</td>";
+                  echo "<td>".$registrant['mobilenumber']."</td>";
+                  echo "<td>".$registrant['comment']."</td></tr>";
+              }
+              echo "</table></div>";
+          } else {
+              echo "<div class='input-group'><h3>No one is currently registered.</h3></div>";
+          }
+      } catch(Exception $e) {
+          echo "Failed: " . $e;
+      }
+  }
+  ?>
 </body>
 </html>
