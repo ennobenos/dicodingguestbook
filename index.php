@@ -5,32 +5,6 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <div class="header">
-  	<h2>Guest Book</h2>
-  </div>
-
-  <form method="post" action="index.php" enctype="multipart/form-data">
-  	<div class="input-group">
-  	  <label>Name</label>
-  	  <input type="text" name="name">
-  	</div>
-  	<div class="input-group">
-  	  <label>Email</label>
-  	  <input type="email" name="email">
-  	</div>
-  	<div class="input-group">
-  	  <label>Mobile Number</label>
-  	  <input type="number" name="mobilenumber">
-  	</div>
-    <div class="input-group">
-      <label>Comment</label>
-      <textarea name="comment" cols="60" rows="3" id="comment"></textarea>
-    </div>
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
-      <button type="submit" class="btn" name="load_data">Load Data</button>
-  	</div>
-  </form>
   <?php
   $host = "dicodingguestbook.database.windows.net";
   $user = "enno";
@@ -64,10 +38,10 @@
             $stmt->bindValue(3, $mobilenumber);
             $stmt->bindValue(4, $comment);
             $stmt->execute();
-            echo "<h3>Your're registered!</h3>";
+            echo "<p>Your're registered!</p>";
           } else {
             foreach($errors as $error) {
-              echo $error;
+              echo "<p>".$error."<br></p>";
             }
           }
       } catch(Exception $e) {
@@ -100,5 +74,31 @@
       }
   }
   ?>
+  <div class="header">
+  	<h2>Guest Book</h2>
+  </div>
+
+  <form method="post" action="index.php" enctype="multipart/form-data">
+  	<div class="input-group">
+  	  <label>Name</label>
+  	  <input type="text" name="name">
+  	</div>
+  	<div class="input-group">
+  	  <label>Email</label>
+  	  <input type="email" name="email">
+  	</div>
+  	<div class="input-group">
+  	  <label>Mobile Number</label>
+  	  <input type="number" name="mobilenumber">
+  	</div>
+    <div class="input-group">
+      <label>Comment</label>
+      <textarea name="comment" cols="60" rows="3" id="comment"></textarea>
+    </div>
+  	<div class="input-group">
+  	  <button type="submit" class="btn" name="reg_user">Register</button>
+      <button type="submit" class="btn" name="load_data">Load Data</button>
+  	</div>
+  </form>
 </body>
 </html>
