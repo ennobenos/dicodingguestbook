@@ -82,7 +82,7 @@
           $stmt = $conn->query($sql_select);
           $registrants = $stmt->fetchAll();
           if(count($registrants) > 0) {
-              echo "<div class='header'><h2>People who are registered:</h2></div>";
+              echo "<div class='header'><h2>Guest List:</h2></div>";
               echo "<form><div class='input-group'><table>";
               echo "<tr><th>Name</th>";
               echo "<th>Email</th>";
