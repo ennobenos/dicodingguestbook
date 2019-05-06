@@ -64,11 +64,13 @@
             $stmt->bindValue(3, $mobilenumber);
             $stmt->bindValue(4, $comment);
             $stmt->execute();
+            echo "<h3>Your're registered!</h3>";
+          } else {
+            echo $errors;
           }
       } catch(Exception $e) {
           echo "Failed: " . $e;
       }
-      echo "<h3>Your're registered!</h3>";
   } else if (isset($_POST['load_data'])) {
       try {
           $sql_select = "SELECT * FROM Guest";
