@@ -83,7 +83,7 @@
           $registrants = $stmt->fetchAll();
           if(count($registrants) > 0) {
               echo "<div class='header'><h2>People who are registered:</h2></div>";
-              echo "<div class='input-group'><table>";
+              echo "<form><div class='input-group'><table>";
               echo "<tr><th>Name</th>";
               echo "<th>Email</th>";
               echo "<th>Mobile Number</th>";
@@ -94,7 +94,7 @@
                   echo "<td>".$registrant['mobilenumber']."</td>";
                   echo "<td>".$registrant['comment']."</td></tr>";
               }
-              echo "</table></div>";
+              echo "</table></div></form>";
           } else {
               echo "<div class='input-group'><h3>No one is currently registered.</h3></div>";
           }
