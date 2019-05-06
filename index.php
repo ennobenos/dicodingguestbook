@@ -1,4 +1,3 @@
-<!--<?php include('server.php') ?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +12,19 @@
   <form method="post" action="index.php" enctype="multipart/form-data">
   	<div class="input-group">
   	  <label>Name</label>
-  	  <input type="text" name="name">
+  	  <input type="text" name="name" required>
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
-  	  <input type="email" name="email">
+  	  <input type="email" name="email" required>
   	</div>
   	<div class="input-group">
   	  <label>Mobile Number</label>
-  	  <input type="number" name="mobilenumber">
+  	  <input type="number" name="mobilenumber" required>
   	</div>
     <div class="input-group">
       <label>Comment</label>
-      <textarea name="comment" cols="60" rows="3" id="comment"></textarea>
+      <textarea name="comment" cols="60" rows="3" id="comment" required></textarea>
     </div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Register</button>
